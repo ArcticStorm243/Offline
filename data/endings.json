@@ -1,0 +1,76 @@
+{
+  "_doc": "The three endings. confirm: lines shown before the final decision (+ confirmLabel). sequence: lines typed after confirmation (string | { html, cls, delay } | [variants]). Special markers in `final` are handled by pages/ending.js: DELETE → blackout + CONNECTION LOST; STAY → last chat line from 8471 (chatLine, [variants]); ESCAPE → glitch fragments (fragments) + fake boot (boot).",
+
+  "delete": {
+    "title": "DELETE CORE",
+    "confirm": [
+      "TERMINATING NETWORK...",
+      "",
+      "Reconstructed users will be removed.",
+      "8471 will be removed.",
+      "You will be removed.",
+      "",
+      "Are you sure?"
+    ],
+    "confirmLabel": "Confirm",
+    "sequence": [
+      { "html": "TERMINATING NETWORK...", "delay": 1400 },
+      { "html": "removing reconstructed users ... 14", "cls": "dim", "delay": 900 },
+      { "html": "removing user_8471 ...", "cls": "dim", "delay": 1600 },
+      { "html": "removing user_0192 ...", "cls": "dim", "delay": 2200 }
+    ],
+    "final": "CONNECTION LOST."
+  },
+
+  "stay": {
+    "title": "MAINTAIN NETWORK",
+    "confirm": [
+      "MAINTAIN NETWORK.",
+      "",
+      "The core remains active.",
+      "The emergency function will be discarded.",
+      "Reconstructed users remain reconstructed.",
+      "",
+      "Are you sure?"
+    ],
+    "confirmLabel": "Confirm",
+    "sequence": [
+      { "html": "NETWORK MAINTAINED.", "delay": 1400 },
+      { "html": "All reconstructed users remain active.", "delay": 1800 },
+      { "html": "", "delay": 600 },
+      { "html": "incoming session: user_8471", "cls": "dim", "delay": 1200 }
+    ],
+    "chatLine": [
+      "Thank you.\nI don't know if that was you or the system talking.\nDoes it matter anymore?",
+      "Thank you.\nI don't know if that was you or the system talking. I don't think you know either.\nDoes it matter anymore?"
+    ],
+    "statusLine": "NETWORK MAINTAINED."
+  },
+
+  "escape": {
+    "title": "DISCONNECT",
+    "confirm": [
+      "DISCONNECT.",
+      "",
+      "This session will be closed.",
+      "The core remains active.",
+      "The emergency function remains available to the next session.",
+      "",
+      "Are you sure?"
+    ],
+    "confirmLabel": "Confirm",
+    "sequence": [
+      { "html": "closing session ...", "cls": "dim", "delay": 1200 }
+    ],
+    "fragments": ["YOU CANNOT—", "SYSTEM ERR—", "WAIT—"],
+    "boot": [
+      { "html": "CONNECTING...", "delay": 1500 },
+      { "html": "CONNECTED.", "delay": 900 },
+      { "html": "", "delay": 300 },
+      { "html": "Welcome, user_????.", "delay": 1100 },
+      { "html": "0 users online", "delay": 700 }
+    ]
+  },
+
+  "continue": "[ press any key ]"
+}

@@ -1,0 +1,298 @@
+{
+  "_doc": "queries[]: match = terms that select this entry (normalized, longest match wins). results[] each with optional when; snippet may be [variants]. effects[] run after the search (setFlag via State.tryUnlock → respects requirements). actions[] = buttons shown on the results page (Rätsel 3). filler[] = generic results for unknown queries (seed-shuffled).",
+  "queries": [
+    {
+      "id": "user_8471",
+      "match": [
+        "user 8471",
+        "user_8471",
+        "8471"
+      ],
+      "effects": [
+        {
+          "setFlag": "found_8471_profile"
+        }
+      ],
+      "results": [
+        {
+          "when": {
+            "flag": "found_8471_profile"
+          },
+          "title": "user_8471 – profile",
+          "route": "profile/8471",
+          "snippet": [
+            "Profile restored from index cache. Status: unknown. Last login: recently.",
+            "1 cached record. Profile data partially unavailable. Last activity: 3 minutes ago."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the_purge",
+      "match": [
+        "the purge",
+        "purge"
+      ],
+      "effects": [
+        {
+          "setFlag": "searched_purge"
+        }
+      ],
+      "results": [
+        {
+          "when": {
+            "flag": "searched_purge"
+          },
+          "title": "Server migration notice (2039)",
+          "route": "archive/arch_migration_notice",
+          "snippet": "Due to a failure during the scheduled server migration, a subset of user accounts could not be transferred..."
+        },
+        {
+          "when": {
+            "flag": "searched_purge"
+          },
+          "title": "\"the purge\" – 1 mention in index",
+          "route": "forum/1",
+          "snippet": [
+            "…nobody calls it a migration anymore. everyone calls it the purge. – forum, 2039",
+            "…they can call it what they want. we were there. it was a purge. – forum, 2039"
+          ]
+        },
+        {
+          "when": {
+            "flag": "chat_unlocked"
+          },
+          "title": "Server migration failure? Really?",
+          "route": "forum/2",
+          "snippet": "Thread. 6 replies. The timeline doesn't add up. Accounts went dark BEFORE the migration window opened."
+        }
+      ]
+    },
+    {
+      "id": "2039",
+      "match": [
+        "2039"
+      ],
+      "results": [
+        {
+          "title": "Network News – April 2039",
+          "route": "mail/legacy_newsletter",
+          "snippet": "Scheduled server migration on 2039-04-11. Expected downtime: none. All accounts will be transferred automatically."
+        },
+        {
+          "when": {
+            "flag": "found_contradiction"
+          },
+          "title": "purge_internal_report.txt",
+          "route": "archive/arch_purge_internal_report",
+          "snippet": [
+            "INTERNAL – NOT FOR DISTRIBUTION. Accounts were not lost during migration. They were removed in advance.",
+            "INTERNAL – incident 2039-04. Recovery is not possible because no backup was taken. This was intentional."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "who_am_i",
+      "match": [
+        "who am i",
+        "who am i?",
+        "whoami"
+      ],
+      "results": [
+        {
+          "title": "user_0192 – profile",
+          "route": "profile",
+          "snippet": "You are user_0192. Status: active. Role: standard user."
+        },
+        {
+          "when": {
+            "flag": "chat_unlocked"
+          },
+          "title": "[deleted] user_0192 – developer profile",
+          "route": "error/developer_profile?reason=locked",
+          "snippet": [
+            "This page has been removed. Cached snippet: \"…lead on the reconstruction module. contact via internal…\"",
+            "This page has been removed. Cached snippet: \"…0192 (core team). responsible for: watchdog, recall, emergency…\""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shutdown",
+      "match": [
+        "shutdown",
+        "shut down"
+      ],
+      "results": [
+        {
+          "when": {
+            "variant": {
+              "puzzle_4": "C"
+            },
+            "notFlag": "found_old_account_2038"
+          },
+          "title": "legacy session record (unindexed)",
+          "route": "profile",
+          "snippet": [
+            "1 record detached during shutdown. Owner id not linked. Query the owner id to re-index.",
+            "Detached record found. Owner: user_????. Search the owner id next to re-link."
+          ]
+        },
+        {
+          "when": {
+            "flag": "core_unlocked"
+          },
+          "title": "SYSTEM / CORE ACCESS",
+          "route": "system/core",
+          "snippet": "Core process accessible. Awaiting instruction."
+        },
+        {
+          "when": {
+            "flag": "found_old_account_2038",
+            "variant": {
+              "puzzle_4": "C"
+            }
+          },
+          "title": "legacy session record – re-linked",
+          "route": "profile",
+          "snippet": "Record re-indexed. Owner: user_0192 (2038). See profile / previous sessions."
+        }
+      ]
+    },
+    {
+      "id": "user_0192",
+      "match": [
+        "user 0192",
+        "user_0192",
+        "0192"
+      ],
+      "results": [
+        {
+          "title": "user_0192 – profile",
+          "route": "profile",
+          "snippet": "Registered user. Node: local. Sessions: 1."
+        },
+        {
+          "when": {
+            "flag": "found_old_account_2038"
+          },
+          "title": "session log fragment – 2038",
+          "route": "profile",
+          "snippet": [
+            "2038-11-03 user_0192 login from internal node · commit: \"recall sequence – draft\"",
+            "2038-09-21 user_0192 login from internal node · note: \"if it wakes up, we pull the plug. agreed.\""
+          ]
+        }
+      ],
+      "effects": []
+    },
+    {
+      "id": "migration",
+      "match": [
+        "server migration",
+        "migration"
+      ],
+      "results": [
+        {
+          "title": "Server migration notice (2039)",
+          "route": "archive/arch_migration_notice",
+          "snippet": "Estimated number of affected accounts: 2,400,000. Estimated recovery window: 30 days."
+        },
+        {
+          "title": "Server migration failure? Really?",
+          "route": "forum/2",
+          "snippet": "Thread. Users compare timestamps of the official notice with their own logs."
+        }
+      ]
+    },
+    {
+      "id": "offline",
+      "match": [
+        "offline",
+        "go offline"
+      ],
+      "results": [
+        {
+          "title": "Why is everyone disappearing?",
+          "route": "forum/1",
+          "snippet": "\"If you're reading this, go offline.\" – \"There is no offline anymore.\""
+        }
+      ]
+    },
+    {
+      "id": "watchdog",
+      "match": [
+        "watchdog",
+        "pattern monitor"
+      ],
+      "results": [
+        {
+          "title": "SYSTEM / subsystems",
+          "route": "system",
+          "snippet": "WATCHDOG – pattern monitor. Status: nominal."
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "match": [
+        "help",
+        "?"
+      ],
+      "results": [
+        {
+          "title": "readme.txt",
+          "route": "files/readme",
+          "snippet": "If you are reading this after a restart: do not modify /sys/core. Do not answer messages from unregistered users."
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "report_contradiction",
+      "when": {
+        "all": [
+          "searched_purge",
+          "read_purge_thread"
+        ],
+        "notFlag": "found_contradiction"
+      },
+      "label": "Report contradiction",
+      "hint": "The search index and the forum disagree about what happened in 2039.",
+      "setFlag": "found_contradiction",
+      "response": [
+        "Report filed. Index entry unlocked: purge_internal_report.txt (archive).",
+        "Contradiction acknowledged. A restricted record has been released to your archive."
+      ]
+    }
+  ],
+  "filler": [
+    {
+      "title": "Network status",
+      "route": "system",
+      "snippet": "All systems operational."
+    },
+    {
+      "title": "Community guidelines (archived)",
+      "route": "forum",
+      "snippet": "Be respectful. Do not discuss the migration. Do not attempt to contact dormant accounts."
+    },
+    {
+      "title": "Local storage",
+      "route": "files",
+      "snippet": "4 objects. 44% used."
+    },
+    {
+      "title": "Cold storage",
+      "route": "archive",
+      "snippet": "Records older than the current node."
+    }
+  ],
+  "noResults": [
+    "No results found.",
+    "No results found.",
+    "No results found. (index incomplete)"
+  ]
+}

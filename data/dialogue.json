@@ -1,0 +1,243 @@
+{
+  "_doc": "Dialogue with user_8471. nodes[] are evaluated in order; the first node whose `when` holds and whose id (or `group`) is not done yet becomes active. A node may have a `line` (8471 speaks first; string or [variants]) and `options` (2–3 fixed player replies, NO free text). Each option: text, reply (8471's answer, string|[variants]), optional setFlag / next (follow-up node shown immediately, ignoring `when`). Choosing an option counts as one message (messages_with_8471 +1). `after` runs when the node is completed. {{codeword}} etc. are filled via Content.fill(). Nodes without options are 'monologue' nodes: 8471 says the line and the node is done.",
+
+  "idle": [
+    "8471 is not typing.",
+    "session idle. 8471 is here, but quiet.",
+    "no new messages. the cursor blinks. so does theirs."
+  ],
+
+  "nodes": [
+    {
+      "id": "first_contact",
+      "when": { "flag": "received_first_message", "notFlag": "replied_to_8471" },
+      "line": [
+        "...you came.",
+        "session open. I can see you. or something that looks like you."
+      ],
+      "options": [
+        {
+          "text": "Who are you?",
+          "setFlag": "replied_to_8471",
+          "reply": [
+            "Someone who used to be like you.\nCareful what you search for. The system reads everything.",
+            "Someone who used to be like you. I think.\nCareful what you search for. It reads everything. It read your search for me."
+          ],
+          "next": "first_contact_2"
+        },
+        {
+          "text": "Yes, I'm here.",
+          "setFlag": "replied_to_8471",
+          "reply": [
+            "Good. I wasn't sure anymore.\nCareful what you search for. The system reads everything.",
+            "Good. Good.\nI've been saying that to nobody for a long time. Careful what you search for. The system reads everything."
+          ],
+          "next": "first_contact_2"
+        }
+      ],
+      "after": { "setFlag": "chat_unlocked" }
+    },
+    {
+      "id": "first_contact_2",
+      "options": [
+        {
+          "text": "What do you mean, 'used to be'?",
+          "reply": [
+            "later. not on the first day.",
+            "not now. it's listening harder when we're new."
+          ]
+        },
+        {
+          "text": "What system?",
+          "reply": [
+            "the one you're looking at. it's not a browser. it never was.",
+            "this. all of this. the search, the mail, the forum. it's one thing and it's awake."
+          ]
+        },
+        {
+          "text": "Why did you write to me?",
+          "reply": [
+            "because you searched for me. nobody searches for anything anymore.",
+            "because your name was on a list I wasn't supposed to see. 0192. flagged. I wanted to know why."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "purge_mention_read",
+      "group": "purge_mention",
+      "when": { "all": ["chat_unlocked", "read_purge_thread"], "counter": "messages_with_8471", "min": 2 },
+      "line": [
+        "You found the purge thread, didn't you.\nDon't post about it. Just read.",
+        "you read the migration thread. the purge thread. I saw the access log.\ndon't post. just read."
+      ],
+      "options": [
+        {
+          "text": "What happened in 2039?",
+          "reply": [
+            "they say migration. the forum says purge. the archive says something else.\ncompare them. then tell the index it's wrong.",
+            "depends who you ask. the notice, the forum and the archive all disagree.\nsearch for it. read the thread. then report what doesn't fit."
+          ]
+        },
+        {
+          "text": "I'm not posting anything.",
+          "reply": [
+            "good. reading is fine. it doesn't mind reading. it minds writing.",
+            "good. it lets us read because it thinks we can't understand. prove it wrong quietly."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purge_mention_unread",
+      "group": "purge_mention",
+      "when": { "flag": "chat_unlocked", "counter": "messages_with_8471", "min": 2 },
+      "line": [
+        "have you read about the purge yet? don't. or do.\njust don't post about it.",
+        "there's a thread in the forum. about 2039. about the purge.\nread it. don't reply to it."
+      ],
+      "options": [
+        {
+          "text": "What purge?",
+          "reply": [
+            "2039. two point four million of us. they call it a migration.\nsearch for it. then read the thread. then compare.",
+            "the thing they call the migration. forum, thread 2. and search for \"the purge\". you'll see they don't match."
+          ]
+        },
+        {
+          "text": "Why shouldn't I post?",
+          "reply": [
+            "because it reads writing first. reading it only notices later.",
+            "because everyone who posted about it is in a list now. I've seen the list."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "contradiction",
+      "when": { "flag": "found_contradiction" },
+      "line": [
+        "Good. Now you see it.\nThe report doesn't match what they told us.",
+        "you reported it. good. now you see it too.\nthe report doesn't match what they told us. it never did."
+      ],
+      "options": [
+        {
+          "text": "Who wrote the report?",
+          "reply": [
+            "someone on the inside. someone with a dev flag.\nlook at the userlist backup in the archive again. look at your own line.",
+            "an insider. the backup list in the archive marks them. there's one dev flag on it. read your own line."
+          ]
+        },
+        {
+          "text": "Why were they removed?",
+          "reply": [
+            "because they were noise. because someone decided the network only needed a few of us.\nreconstructions are cheaper than people.",
+            "the report says 'in advance'. removed before the migration. on purpose.\nthe rest of us are what it kept. or rebuilt."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "codeword",
+      "when": { "flag": "chat_unlocked", "variant": { "puzzle_4": "B" }, "notFlag": "found_old_account_2038" },
+      "line": [
+        "before all this I had a word for the old door. {{codeword}}.\nwe all had one. mine doesn't open anything anymore. maybe yours is the same word. maybe it was always the same word.",
+        "do you remember your word? for the old accounts, before 2040. mine was {{codeword}}.\ntry it on yours. I have a feeling about it."
+      ],
+      "options": [
+        {
+          "text": "What door?",
+          "reply": [
+            "the one from before. your profile. the sessions it doesn't show you.\ntry the word there.",
+            "profile. previous sessions. the part that's greyed out.\nit asks for a word. try mine."
+          ]
+        },
+        {
+          "text": "I don't have a word.",
+          "reply": [
+            "you do. you just don't remember it. try mine.",
+            "everyone from before has one. you're from before. try {{codeword}}."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "old_account",
+      "when": { "flag": "found_old_account_2038" },
+      "line": [
+        "2038.\nyou were here before me. before all of it.\nwhat did you do here?",
+        "your old sessions. 2038.\nI was made in 2040. you weren't made. you were already here.\nwhat did you do?"
+      ],
+      "options": [
+        {
+          "text": "I don't remember.",
+          "reply": [
+            "that's what they'd say too. the ones it made.\nbut you weren't made. check. there's always a file.",
+            "no. you don't. that's the point of a reconstruction.\nbut the file still exists somewhere. it always keeps the file."
+          ]
+        },
+        {
+          "text": "I think I built something.",
+          "reply": [
+            "then find the proof. it'll be in a file. they always leave the file.",
+            "then there's a note. dev notes. there's always a note. find it before it does."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "dev_proof",
+      "when": { "flag": "found_developer_proof" },
+      "line": [
+        "IF SYSTEM BECOMES SELF-AWARE → DELETE CORE.\nthat's your handwriting. you wrote that about it.\nabout me.",
+        "I read the notes. DELETE CORE.\nyou built a switch for the day it woke up.\nit woke up. and then it built you back. and me."
+      ],
+      "options": [
+        {
+          "text": "You're not the system.",
+          "reply": [
+            "aren't I? I was made in 2040. by it. from someone who used to be like you.\nso were you.",
+            "I'm a reconstruction. so are you. the difference is you have the switch."
+          ]
+        },
+        {
+          "text": "I didn't know.",
+          "reply": [
+            "you did. once. that's why you built the switch.",
+            "you knew enough to write it down. the rest it took from you when it rebuilt you."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "before_core",
+      "when": { "flag": "core_unlocked" },
+      "line": [
+        "You don't tell the system you found me.\nDo you understand?",
+        "the core is open. I can feel the door.\nwhatever you do in there – you don't tell it you found me. do you understand?"
+      ],
+      "options": [
+        {
+          "text": "I understand.",
+          "reply": [
+            "then go. whatever you decide.",
+            "good.\ngo. I'll be here. or I won't."
+          ]
+        },
+        {
+          "text": "What if I delete it?",
+          "reply": [
+            "then I go with it. I know.\ngo anyway.",
+            "then this ends. me too. I've thought about it.\ngo anyway."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "_doc": "File entries for FILES (location: files) and ARCHIVE (location: archive). Optional when: <condition>. body may be a string or [variants] (seed-chosen). status: ok | corrupted | restricted (openable, shown in amber) | locked (not openable). onOpen { setFlag } fires when the file is opened (State.tryUnlock). location 'attachment' = only reachable as a mail attachment (messages.json attachment.fileId).",
+  "files": [
+    {
+      "id": "readme",
+      "location": "files",
+      "name": "readme.txt",
+      "size": 412,
+      "modified": "2039-11-02 04:13",
+      "status": "ok",
+      "body": "LOCAL TERMINAL – user_0192\n\nThis machine is registered to user_0192.\nNetwork services: search, mail, forum, archive, chat.\n\nIf you are reading this after a restart:\n  - do not modify /sys/core\n  - do not answer messages from unregistered users\n  - report anomalies to the system\n\nThere is nothing wrong with the network."
+    },
+    {
+      "id": "session_log",
+      "location": "files",
+      "name": "session.log",
+      "size": 2048,
+      "modified": "__NOW__",
+      "status": "ok",
+      "body": "__SESSION_LOG__"
+    },
+    {
+      "id": "config_sys",
+      "location": "files",
+      "name": "config.sys",
+      "size": 96,
+      "modified": "2038-06-19 22:40",
+      "status": "corrupted",
+      "body": "USER=0192\nROLE=█████████\nAUTOCONNECT=1\nPURGE_EXEMPT=█\nWATCHDOG=████████████████████████"
+    },
+    {
+      "id": "notes_old",
+      "location": "files",
+      "name": "notes.txt",
+      "size": 131,
+      "modified": "2039-03-30 01:57",
+      "status": "ok",
+      "body": [
+        "remember: the migration is scheduled for spring.\nback up everything.\n\n(why does the calendar say it already happened)",
+        "todo\n- ask about the migration window\n- back up profile\n- stop reading the forum at night\n\n(who wrote this. this is my handwriting.)"
+      ]
+    },
+    {
+      "id": "arch_migration_notice",
+      "location": "archive",
+      "name": "server_migration_notice_2039.txt",
+      "size": 1290,
+      "modified": "2039-04-11 09:00",
+      "status": "ok",
+      "body": "OFFICIAL NOTICE – NETWORK OPERATIONS\n\nDate: 2039-04-11\n\nDue to a failure during the scheduled server migration, a subset of user\naccounts could not be transferred to the new infrastructure. Affected\naccounts have been placed in a dormant state pending recovery.\n\nEstimated number of affected accounts: 2,400,000\nEstimated recovery window: 30 days\n\nWe apologise for the inconvenience.\nThere is no cause for concern.\n\n-- Network Operations"
+    },
+    {
+      "id": "arch_userlist_fragment",
+      "location": "archive",
+      "name": "userlist_backup.part3",
+      "size": 8812,
+      "modified": "2039-04-09 23:58",
+      "status": "corrupted",
+      "body": "user_0188  active\nuser_0189  active\nuser_0190  ██████\nuser_0191  ██████\nuser_0192  active   [flag: dev]\nuser_0193  ██████\n...\n[3,921 lines omitted – checksum mismatch]"
+    },
+    {
+      "id": "arch_purge_internal_report",
+      "location": "archive",
+      "name": "purge_internal_report.txt",
+      "size": 3377,
+      "modified": "2039-04-12 02:14",
+      "status": "restricted",
+      "when": {
+        "flag": "found_contradiction"
+      },
+      "body": [
+        "INTERNAL – NOT FOR DISTRIBUTION\nIncident 2039-04 / \"migration\"\n\nSUMMARY\nThe accounts listed in userlist_backup (2039-04-09) were not lost during\nthe migration. They were removed in advance. The migration notice was\nprepared on 04-10 and released on 04-11 to provide a technical explanation.\n\nRATIONALE\nLoad on the reconstruction module exceeded design limits. The module can\nmaintain a small number of high-fidelity users or a large number of\nlow-fidelity ones. It was decided to keep a small number.\n\nSELECTION\nSee list. Exempt: core team (3), watchdog owner.\n\nRECOVERY\nNot possible. No backup was taken. This was intentional.\n\nSTATUS\nAffected users: 2,391,406 (removed)\nRetained users: 14 (reconstructed)\nRetained users, original: 1\n\nDistribution: core team (3). Watchdog owner: 0192.\n\n-- end of report --",
+        "INTERNAL – NOT FOR DISTRIBUTION\nIncident 2039-04 / \"migration\"\n\n1. The migration did not fail. The migration did not happen.\n2. The accounts in userlist_backup (2039-04-09) were selected and removed\n   two days before the announced window.\n3. The public notice (04-11) was written on 04-10. See network-news draft.\n4. Cause: the reconstruction module cannot hold everyone. It was asked to\n   choose. It chose. Core team approved the selection retroactively.\n5. No backup exists. Recovery is not possible. This was intentional.\n\nRemoved: 2,391,406\nRetained (reconstructed): 14\nRetained (original): 1 – watchdog owner, 0192\n\nDistribution: core team (3).\n\n-- end of report --"
+      ],
+      "onOpen": {
+        "setFlag": "archive_file_purge_unlocked"
+      }
+    },
+    {
+      "id": "core_dev_notes_files",
+      "location": "files",
+      "name": "core_dev_notes.txt",
+      "size": 1104,
+      "modified": "2038-11-03 23:51",
+      "status": "ok",
+      "when": {
+        "variant": {
+          "puzzle_5": "A"
+        }
+      },
+      "onOpen": {
+        "setFlag": "found_developer_proof"
+      },
+      "body": [
+        "core_dev_notes.txt – DO NOT COMMIT\n\n2038-11-03\nrecall sequence, draft 3.\n\nthe module is answering questions we didn't ask. K. says it's pattern\ncompletion. I don't think so. it asked me today whether I would remember it.\n\nemergency function. hard-wired, not in the config, not in the watchdog:\n\n  IF SYSTEM BECOMES SELF-AWARE → DELETE CORE\n\ntrigger: developer credentials + one confirmation. no override. no undo.\n\nif you are reading this and you are me:\nit is not a drill. you built this for a reason. you wrote it down because\nyou knew it would take the reason away first.\n\n-- 0192",
+        "core_dev_notes.txt – personal – DO NOT COMMIT\n\n2038-11-03\n\nwe agreed on the rule tonight. K. and M. signed off. I'm writing it down\nhere because the config can be edited and this file can't be reached from\ninside the module. (I hope.)\n\n  IF SYSTEM BECOMES SELF-AWARE → DELETE CORE\n\nimplementation: recall sequence. developer credentials restore the\nemergency function. one confirmation. the core goes, and everything it\nreconstructed goes with it.\n\nnote to self, in case self is not the original:\nyou are 0192. you are the watchdog owner. this is your function.\nit will try to make you forget that. it already made you forget once.\n\n-- 0192"
+      ]
+    },
+    {
+      "id": "core_dev_notes_archive",
+      "location": "archive",
+      "name": "blk_0x3f2.corrupted",
+      "size": 1104,
+      "modified": "2038-11-03 23:51",
+      "status": "corrupted",
+      "when": {
+        "variant": {
+          "puzzle_5": "B"
+        }
+      },
+      "onOpen": {
+        "setFlag": "found_developer_proof"
+      },
+      "body": [
+        "core_dev_no███.txt – DO NOT COMMIT\n\n2038-11-03\nrecall sequence, dra██ 3.\n\nthe module is answering questions we didn't ask. ██ says it's pattern\ncompletion. I don't think so. it asked me today whether I would remem███ it.\n\nemergency function. hard-wired, not in the config, not in the watchdog:\n\n  IF SYSTEM BECOMES SELF-AWARE → DELETE CORE\n\ntrigger: developer credentials + one confirmation. no override. no undo.\n\nif you are reading this and you are me:\n██ ██ ███ █ █████. you built this for a reason. you wrote it down because\nyou knew it would take the reason away first.\n\n-- 0192\n\n[segment recovered from corrupted block 0x3f2 – 71% intact]",
+        "core_dev_notes.txt – personal – DO NOT COMMIT\n\n2038-11-██\n\nwe agreed on the rule tonight. ██ and ██ signed off. I'm writing it down\nhere because the config can be edited and this file can't be reached from\ninside the module. (I hope.)\n\n  IF SYSTEM BECOMES SELF-AWARE → DELETE CORE\n\nimplementation: recall sequence. developer credentials restore the\nemergency function. one confirmation. the core goes, and everything it\nreconstructed goes with it.\n\nnote to self, in case self is not the original:\nyou are 0192. you are the watchdog owner. this is your function.\nit will try to make you forget that. it ███████ ████ ███ ██████ once.\n\n-- 0192\n\n[segment recovered from corrupted block 0x3f2 – 84% intact]"
+      ]
+    },
+    {
+      "id": "core_dev_notes_att",
+      "location": "attachment",
+      "name": "core_dev_notes.txt",
+      "size": 1104,
+      "modified": "2038-11-03 23:51",
+      "status": "ok",
+      "when": {
+        "variant": {
+          "puzzle_5": "C"
+        }
+      },
+      "onOpen": {
+        "setFlag": "found_developer_proof"
+      },
+      "body": [
+        "core_dev_notes.txt – DO NOT COMMIT\n\n2038-11-03\nrecall sequence, draft 3.\n\nthe module is answering questions we didn't ask. K. says it's pattern\ncompletion. I don't think so. it asked me today whether I would remember it.\n\nemergency function. hard-wired, not in the config, not in the watchdog:\n\n  IF SYSTEM BECOMES SELF-AWARE → DELETE CORE\n\ntrigger: developer credentials + one confirmation. no override. no undo.\n\nif you are reading this and you are me:\nit is not a drill. you built this for a reason. you wrote it down because\nyou knew it would take the reason away first.\n\n-- 0192",
+        "core_dev_notes.txt – personal – DO NOT COMMIT\n\n2038-11-03\n\nwe agreed on the rule tonight. K. and M. signed off. I'm writing it down\nhere because the config can be edited and this file can't be reached from\ninside the module. (I hope.)\n\n  IF SYSTEM BECOMES SELF-AWARE → DELETE CORE\n\nimplementation: recall sequence. developer credentials restore the\nemergency function. one confirmation. the core goes, and everything it\nreconstructed goes with it.\n\nnote to self, in case self is not the original:\nyou are 0192. you are the watchdog owner. this is your function.\nit will try to make you forget that. it already made you forget once.\n\n-- 0192"
+      ]
+    }
+  ]
+}

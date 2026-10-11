@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OFFLINE</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div id="terminal">
+    <header id="statusbar">
+      <span class="status-left">
+        <span class="prompt">&gt;</span>
+        <span id="status-user">user_0192</span>
+      </span>
+      <span class="status-center" id="status-server">All systems operational.</span>
+      <span class="status-right" id="status-online">0 users online</span>
+    </header>
+
+    <nav id="nav">
+      <a href="#/home"    data-page="home">HOME</a>
+      <a href="#/search"  data-page="search">SEARCH</a>
+      <a href="#/mail"    data-page="mail">MAIL <span class="badge" id="badge-mail" hidden>0</span></a>
+      <a href="#/forum"   data-page="forum">FORUM</a>
+      <a href="#/archive" data-page="archive">ARCHIVE</a>
+      <a href="#/profile" data-page="profile">PROFILE</a>
+      <a href="#/chat"    data-page="chat">CHAT</a>
+      <a href="#/system"  data-page="system">SYSTEM</a>
+      <a href="#/files"   data-page="files">FILES</a>
+    </nav>
+
+    <main id="app" aria-live="polite"></main>
+
+    <footer id="footer">
+      <span id="footer-seed">seed: ----</span>
+      <span id="footer-clock">--:--:--</span>
+      <button id="btn-sound" class="link-btn" title="Toggle sound">[ sound: on ]</button>
+      <button id="btn-reset" class="link-btn" title="Delete save and start new game">[ new game ]</button>
+    </footer>
+  </div>
+
+  <!-- Core -->
+  <script src="js/seed.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/puzzles.js"></script>
+
+  <!-- Pages -->
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/search.js"></script>
+  <script src="js/pages/mail.js"></script>
+  <script src="js/pages/forum.js"></script>
+  <script src="js/pages/profile.js"></script>
+  <script src="js/pages/chat.js"></script>
+  <script src="js/pages/system.js"></script>
+  <script src="js/pages/files.js"></script>
+  <script src="js/pages/archive.js"></script>
+  <script src="js/pages/error.js"></script>
+  <script src="js/pages/ending.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="js/main.js"></script>
+</body>
+</html>

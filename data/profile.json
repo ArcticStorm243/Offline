@@ -1,0 +1,30 @@
+{
+  "_doc": "Profile content for user_0192. previousSessions: shown once found_old_account_2038 is set – array of variants, each variant is a list of [timestamp, action, detail] rows. oldAccount.createdYear: the legacy account's creation year (the visible account is from 2040).",
+
+  "oldAccount": {
+    "createdYear": 2038,
+    "node": "internal node 3",
+    "role": "core team / watchdog owner"
+  },
+
+  "previousSessions": [
+    [
+      ["2038-06-19 22:40", "login",  "internal node 3"],
+      ["2038-06-19 22:41", "edit",   "/sys/core/watchdog.cfg"],
+      ["2038-09-21 01:12", "note",   "\"if it wakes up, we pull the plug. agreed.\""],
+      ["2038-11-03 17:05", "commit", "recall sequence – draft"],
+      ["2039-04-09 23:41", "exec",   "userlist_export → /archive/userlist_backup"],
+      ["2039-04-09 23:59", "logout", "(last session before migration)"],
+      ["2040-01-01 00:00", "login",  "local node – reconstructed session"]
+    ],
+    [
+      ["2038-05-02 09:15", "login",  "internal node 3"],
+      ["2038-05-02 09:20", "create", "/sys/core/watchdog"],
+      ["2038-08-14 03:33", "note",   "\"it answered a question nobody asked it today.\""],
+      ["2038-11-03 17:05", "commit", "recall sequence – draft (IF SELF-AWARE → DELETE CORE)"],
+      ["2039-04-09 23:58", "exec",   "selection.list → /archive/userlist_backup"],
+      ["2039-04-10 00:02", "logout", "(session terminated by watchdog)"],
+      ["2040-01-01 00:00", "login",  "local node – reconstructed session"]
+    ]
+  ]
+}

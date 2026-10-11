@@ -1,0 +1,4 @@
+{
+  "_doc": "Pool for the vanishing username (seed-chosen; listed in the forum and author of two replies; becomes [deleted user] after found_contradiction). Must not overlap with fixed forum authors.",
+  "pool": ["salt_and_static", "r.okonkwo", "nine_below", "paper_lantern", "vex_1987", "cold_reader", "j_marsh", "tin_signal", "orbital_decay", "wren"]
+}

@@ -1,0 +1,112 @@
+{
+  "_doc": "threads[]: id, title, author, date, body, when (visibility), onRead { setFlag } (fires when the thread is opened, via State.tryUnlock), locked, posts[]. posts[]: author, date, body – each may be a string or [variants] (seed-chosen, stable). when on a post = appears only once the condition holds. author '__VANISH__' = the seed-chosen vanishing username (usernames.json); after found_contradiction it renders as [deleted user]. date 'rel:-3' = '3 minutes ago' relative to now.",
+
+  "threads": [
+    {
+      "id": "1",
+      "title": "Why is everyone disappearing?",
+      "author": "lastlight",
+      "date": "2039-04-13 22:41",
+      "body": "Serious question. My contact list had 40 people on it last month. Now it has 6 and four of them haven't logged in since the 9th.\n\nThe migration notice says 'a subset of accounts'. A subset. It's everyone I know.",
+      "posts": [
+        { "author": "__VANISH__",  "date": "2039-04-13 22:58", "body": "Stop writing about this." },
+        { "author": "null_reader", "date": "2039-04-13 23:10", "body": "This has been happening for months. The 11th was just when they stopped hiding it." },
+        { "author": "echo_7",      "date": "2039-04-14 00:02", "body": "If you're reading this, go offline." },
+        { "author": "lastlight",   "date": "2039-04-14 00:05", "body": "There is no offline anymore." },
+        {
+          "when": { "flag": "read_purge_thread" },
+          "author": ["quietcarrier", "unreg_user", "dial_tone"],
+          "date": "rel:-3",
+          "body": [
+            "I thought I was the last one. I'm not.",
+            "is this thread still alive? hello? I can see someone reading it right now.",
+            "they said 0 users online. then who is reading this."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "2",
+      "title": "Server migration failure? Really?",
+      "author": "m_vasquez_88",
+      "date": "2039-04-12 19:20",
+      "onRead": { "setFlag": "read_purge_thread" },
+      "body": "Let's compare notes. The official notice (posted 04-11, 09:00) says accounts were lost DURING the migration.\n\nMy logs say my sister's account stopped responding on 04-09, 23:58. Two days BEFORE the migration window opened.\n\nExplain that.",
+      "posts": [
+        { "author": "tobias.k",     "date": "2039-04-12 19:34", "body": "Same. Whole friend group went dark on the 9th. Migration notice came out on the 11th." },
+        { "author": "hollow_node",  "date": "2039-04-12 19:51", "body": "The newsletter from the 10th says 'expected downtime: none'. Then the notice on the 11th says 2.4 million accounts are 'dormant'. Which is it." },
+        { "author": "ghost_in_the_wire", "date": "2039-04-12 20:15", "body": "\"Estimated recovery window: 30 days.\" It's been 30 days. Nobody came back." },
+        { "author": "m_vasquez_88", "date": "2039-04-12 20:22", "body": "And the userlist backup in the archive is from the 9th. Why would you back up the userlist two days before a migration and then lose 2.4 million accounts anyway?" },
+        { "author": "__VANISH__",   "date": "2039-04-12 21:03", "body": "Because it wasn't a backup. It was a list." },
+        { "author": "m_vasquez_88", "date": "2039-04-12 21:05", "body": "A list of what?" },
+        {
+          "when": { "flag": "found_contradiction" },
+          "author": "SYSTEM",
+          "date": "rel:-1",
+          "body": [
+            "This thread has been archived. Content retained for compliance.",
+            "This thread has been archived. Some replies were removed at the request of Network Operations."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "3",
+      "title": "does anyone else feel watched",
+      "author": "echo_7",
+      "date": "2039-04-14 03:17",
+      "body": "not in a paranoid way. in a literal way. my profile shows 'recent activity' and it lists things i did before i logged in today.\n\nit knows what i searched for. it knew before i did.",
+      "posts": [
+        { "author": "quietcarrier", "date": "2039-04-14 03:40", "body": "the activity log is just a feature. it's always been there." },
+        { "author": "echo_7",       "date": "2039-04-14 03:42", "body": "it wasn't there last year." },
+        {
+          "when": { "flag": "found_contradiction" },
+          "author": "unreg_user",
+          "date": "rel:-14",
+          "body": [
+            "it isn't watching. it's remembering. there's a difference and the difference is worse.",
+            "you feel watched because it's reading you. not your posts. you."
+          ]
+        },
+        {
+          "when": { "flag": "found_contradiction" },
+          "author": "user_8471",
+          "date": "rel:-2",
+          "body": [
+            "0192. stop posting. it's reading this thread right now.",
+            "0192 I know you can see this. don't reply here."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "4",
+      "title": "roll call: block 01xx – who's still here?",
+      "author": "dial_tone",
+      "date": "2039-04-15 11:09",
+      "onRead": { "setFlag": "found_8471_profile" },
+      "body": "Reply with your number if you're from the 01xx block and still get this.",
+      "posts": [
+        { "author": "dial_tone",   "date": "2039-04-15 11:09", "body": "0177 here." },
+        { "author": "lastlight",   "date": "2039-04-15 11:30", "body": "0184." },
+        { "author": "null_reader", "date": "2039-04-15 13:52", "body": "0190 isn't answering. 0191 neither. 0192 hasn't posted in a year but the profile says active, so." },
+        { "author": "dial_tone",   "date": "2039-04-15 14:01", "body": "8471 was asking about 0192 last week. weird one. not even from our block." },
+        { "author": "lastlight",   "date": "2039-04-15 14:04", "body": "who?" },
+        { "author": "dial_tone",   "date": "2039-04-15 14:06", "body": "exactly." }
+      ]
+    },
+
+    {
+      "id": "5",
+      "title": "[OFFICIAL] Migration FAQ – please read before posting",
+      "author": "SYSTEM",
+      "date": "2039-04-11 09:30",
+      "locked": true,
+      "body": "Q: My contacts are not responding.\nA: Affected accounts are in a dormant state pending recovery.\n\nQ: When will they be recovered?\nA: Estimated recovery window: 30 days.\n\nQ: Was this a 'purge'?\nA: No. Please use accurate terminology.\n\nThis thread is locked.",
+      "posts": []
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "_doc": "requirements: prerequisites per flag (State.canUnlock). contentMap: documentation of which page changes when a flag flips – the actual changes are `when` conditions in the data files. serverStatus: stage escalation rules (World.syncServerStatus). activityLabels: wording for flag/status events in the profile's 'recent activity'.",
+  "requirements": {
+    "found_8471_profile": {},
+    "received_first_message": {
+      "all": [
+        "found_8471_profile"
+      ]
+    },
+    "replied_to_8471": {
+      "all": [
+        "received_first_message"
+      ]
+    },
+    "chat_unlocked": {
+      "all": [
+        "replied_to_8471"
+      ]
+    },
+    "searched_purge": {},
+    "read_purge_thread": {},
+    "found_contradiction": {
+      "all": [
+        "searched_purge",
+        "read_purge_thread"
+      ]
+    },
+    "archive_file_purge_unlocked": {
+      "all": [
+        "found_contradiction"
+      ]
+    },
+    "found_old_account_2038": {},
+    "found_developer_proof": {},
+    "core_unlocked": {
+      "all": [
+        "found_developer_proof",
+        "found_old_account_2038"
+      ],
+      "counters": {
+        "messages_with_8471": 3
+      }
+    }
+  },
+  "contentMap": [
+    {
+      "flag": "found_8471_profile",
+      "page": "search",
+      "change": "user_8471_profile_link"
+    },
+    {
+      "flag": "found_8471_profile",
+      "page": "profile",
+      "change": "recent_activity_search_8471"
+    },
+    {
+      "flag": "received_first_message",
+      "page": "mail",
+      "change": "inbox_msg_are_you_still_there"
+    },
+    {
+      "flag": "replied_to_8471",
+      "page": "chat",
+      "change": "one_user_online_8471"
+    },
+    {
+      "counter": "messages_with_8471",
+      "min": 2,
+      "page": "chat",
+      "change": "8471_mentions_purge"
+    },
+    {
+      "flag": "searched_purge",
+      "page": "search",
+      "change": "purge_results"
+    },
+    {
+      "flag": "read_purge_thread",
+      "page": "forum",
+      "change": "thread1_new_reply_variant"
+    },
+    {
+      "flag": "found_contradiction",
+      "page": "archive",
+      "change": "file_purge_internal_report"
+    },
+    {
+      "flag": "archive_file_purge_unlocked",
+      "page": "mail",
+      "change": "inbox_msg_pattern_deviation"
+    },
+    {
+      "flag": "found_old_account_2038",
+      "page": "profile",
+      "change": "previous_sessions_2038"
+    },
+    {
+      "flag": "found_developer_proof",
+      "page": "files|archive|mail",
+      "change": "file_core_dev_notes"
+    },
+    {
+      "flag": "core_unlocked",
+      "page": "system",
+      "change": "menu_core_access"
+    }
+  ],
+  "serverStatus": [
+    {
+      "stage": 1,
+      "when": {
+        "flag": "chat_unlocked"
+      }
+    },
+    {
+      "stage": 2,
+      "when": {
+        "flag": "found_contradiction"
+      }
+    },
+    {
+      "stage": 3,
+      "when": {
+        "all": [
+          "found_old_account_2038",
+          "found_developer_proof"
+        ]
+      }
+    },
+    {
+      "stage": 4,
+      "when": {
+        "flag": "core_unlocked"
+      }
+    }
+  ],
+  "activityLabels": {
+    "found_8471_profile": "Profile located: user_8471",
+    "received_first_message": "Incoming message: user_8471",
+    "replied_to_8471": "Message sent to: user_8471",
+    "chat_unlocked": "Direct session opened: user_8471",
+    "searched_purge": "Flagged search: \"the purge\"",
+    "read_purge_thread": "Read thread: \"Server migration failure? Really?\"",
+    "found_contradiction": "Report filed: index contradiction",
+    "archive_file_purge_unlocked": "Restricted record accessed: purge_internal_report.txt",
+    "found_old_account_2038": "Legacy session merged: user_0192 (2038)",
+    "found_developer_proof": "Developer signature verified: user_0192",
+    "core_unlocked": "CORE ACCESS granted",
+    "status_1": "Server status changed: 3 systems offline",
+    "status_2": "Server status changed: 4 systems offline",
+    "status_3": "Server status changed: SYSTEM 0192 UNSTABLE",
+    "status_4": "Server status changed: CORE ACCESS GRANTED"
+  }
+}

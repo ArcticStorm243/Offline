@@ -1,0 +1,130 @@
+{
+  "_doc": "Six core puzzles. flag = consequence. reachedWhen = condition under which the puzzle counts as 'reached' – at that moment the variant is chosen by seed and frozen in state.puzzleVariants (never re-rolled). auto = flag is set automatically as soon as State.canUnlock() holds. variants[]: id, location, solution (mechanic key used by Puzzles.js), reference = personalised line for the core screen, plus mechanic-specific fields. Puzzles 1–3 have no variants; their mechanics live in the content files (search effects, forum onRead, chat, search actions).",
+
+  "puzzles": {
+    "puzzle_1": {
+      "title": "Who is 8471?",
+      "flag": "found_8471_profile",
+      "mechanic": "discovery",
+      "triggers": ["search: user 8471 (search-results.json effects)", "forum: read thread 4 (forum.json onRead)"]
+    },
+    "puzzle_2": {
+      "title": "First contact",
+      "flag": "replied_to_8471",
+      "mechanic": "dialogue",
+      "triggers": ["chat: node first_contact (dialogue.json)"]
+    },
+    "puzzle_3": {
+      "title": "The contradiction",
+      "flag": "found_contradiction",
+      "mechanic": "action",
+      "triggers": ["search: action report_contradiction (search-results.json)"]
+    },
+
+    "puzzle_4": {
+      "title": "The old account",
+      "flag": "found_old_account_2038",
+      "reachedWhen": { "flag": "chat_unlocked" },
+      "variants": [
+        {
+          "id": "A",
+          "location": "profile",
+          "solution": "account_creation_date",
+          "lockedText": "[ 1 legacy session record – access restricted ]",
+          "prompt": "verification required – account creation date (YYYY-MM-DD)",
+          "hint": [
+            "The record belongs to an account with the same id as yours. Identity is verified against the current registry entry.",
+            "Legacy records are keyed to the current registry entry. The date you are looking for is not from 2038."
+          ],
+          "reference": [
+            "The date on your own profile opened the old door.",
+            "You verified yourself with the date they gave you. It worked. That should worry you."
+          ]
+        },
+        {
+          "id": "B",
+          "location": "chat",
+          "solution": "codeword_from_8471",
+          "codewords": ["lantern", "meridian", "saltwater", "kestrel", "hollowday", "nightjar", "corridor", "sevenfold"],
+          "lockedText": "[ 1 legacy session record – passphrase required ]",
+          "prompt": "verification required – legacy passphrase",
+          "hint": [
+            "Legacy accounts used a shared passphrase per node. Someone from the same node might still remember it.",
+            "Passphrases were issued per node, not per user. Ask the only other user who is still here."
+          ],
+          "reference": [
+            "8471's word opened your door. It was always the same word.",
+            "You used their passphrase. It fit. You were on the same node all along."
+          ]
+        },
+        {
+          "id": "C",
+          "location": "search",
+          "solution": "shutdown_then_0192",
+          "lockedText": "[ 1 legacy session record – not indexed ]",
+          "prompt": null,
+          "hint": [
+            "Unindexed records are re-linked by the search index: first the event that detached them, then the owner id.",
+            "The record was detached during the shutdown. The index re-links detached records when the event and then the owner are queried in sequence."
+          ],
+          "reference": [
+            "You searched for the shutdown, then for yourself. That's the order it happened in.",
+            "The index gave you back what it had detached. Shutdown first. Then you."
+          ]
+        }
+      ]
+    },
+
+    "puzzle_5": {
+      "title": "The proof",
+      "flag": "found_developer_proof",
+      "reachedWhen": { "any": ["archive_file_purge_unlocked", "found_old_account_2038"] },
+      "variants": [
+        {
+          "id": "A",
+          "location": "files",
+          "solution": "open_file",
+          "fileId": "core_dev_notes_files",
+          "reference": [
+            "You found it through the files, not the archive.",
+            "It was in your own storage the whole time. It had only been renamed."
+          ]
+        },
+        {
+          "id": "B",
+          "location": "archive",
+          "solution": "open_file",
+          "fileId": "core_dev_notes_archive",
+          "reference": [
+            "You found it in the corrupted archive, where nobody looks.",
+            "You read a damaged record and it was the only one that told the truth."
+          ]
+        },
+        {
+          "id": "C",
+          "location": "mail",
+          "solution": "open_attachment",
+          "messageId": "unknown_attachment",
+          "reference": [
+            "It was sent to you. You didn't find it – it found you.",
+            "You didn't have to look. Someone made sure it reached your inbox."
+          ]
+        }
+      ]
+    },
+
+    "puzzle_6": {
+      "title": "Core access",
+      "flag": "core_unlocked",
+      "auto": true,
+      "mechanic": "confirmation",
+      "triggers": ["requirements in flags-content-map.json: found_developer_proof + found_old_account_2038 + messages_with_8471 >= 3"]
+    }
+  },
+
+  "attemptFailed": [
+    "verification failed. attempt logged.",
+    "verification failed. this record is monitored.",
+    "verification failed."
+  ]
+}

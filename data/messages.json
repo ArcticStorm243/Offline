@@ -1,0 +1,262 @@
+{
+  "_doc": "messages[]: id, from, subject, body (string | [variants], seed-chosen), when (condition), date ('fixed string' | omitted = time the message became visible), attachment { fileId } (Paket 6), openInChat (shows a link to the chat). unlockOnVisit: flags that get unlocked (if requirements are met) while the player is on the mail page – used for 'received_first_message'.",
+  "unlockOnVisit": [
+    "received_first_message"
+  ],
+  "messages": [
+    {
+      "id": "sys_welcome",
+      "from": "SYSTEM",
+      "subject": "Welcome back",
+      "date": "__SESSION__",
+      "body": "Account active.\n0 systems require attention.\n\nThis is an automated message."
+    },
+    {
+      "id": "sys_maintenance",
+      "from": "SYSTEM",
+      "subject": "Scheduled maintenance completed",
+      "date": "2040-01-01 00:00",
+      "body": "Node re-initialised for user_0192.\nMaintenance completed. 0 users affected.\n\nThis is an automated message."
+    },
+    {
+      "id": "legacy_newsletter",
+      "from": "network-news",
+      "subject": "NETWORK NEWS – April 2039",
+      "date": "2039-04-10 08:00",
+      "body": "Dear users,\n\nA scheduled server migration will take place on 2039-04-11 starting 09:00.\nExpected downtime: none. All accounts will be transferred automatically.\nNo action is required on your part.\n\nWe thank you for being part of the network.\n\n-- Network Operations"
+    },
+    {
+      "id": "8471_still_there",
+      "from": "user_8471",
+      "subject": "Are you still there?",
+      "when": {
+        "flag": "received_first_message"
+      },
+      "openInChat": true,
+      "body": [
+        "are you still there?\n\nI saw your search. nobody searches for me. nobody searches for anything anymore.\n\nif you're real, answer. not here. it reads mail first.",
+        "you looked me up.\n\nI don't know how long I've been waiting for someone to do that. it feels like a long time. it might have been a few minutes.\n\nare you still there? don't answer by mail. open a session."
+      ]
+    },
+    {
+      "id": "sys_unregistered_contact",
+      "from": "SYSTEM",
+      "subject": "Notice: contact with unregistered address",
+      "when": {
+        "flag": "replied_to_8471"
+      },
+      "body": [
+        "A message was delivered to an address that is not part of the active user registry.\n\nThis event has been logged.\nNo further action is required.",
+        "Outbound contact to an unregistered node was detected.\n\nThe node does not exist.\nThis event has been logged."
+      ]
+    },
+    {
+      "id": "sys_user_count",
+      "from": "SYSTEM",
+      "subject": "User count corrected",
+      "when": {
+        "flag": "replied_to_8471"
+      },
+      "body": "Users online: 0 → 1.\n\nDiscrepancy under review."
+    },
+    {
+      "id": "8471_dont_use_mail",
+      "from": "user_8471",
+      "subject": "(no subject)",
+      "when": {
+        "flag": "chat_unlocked"
+      },
+      "openInChat": true,
+      "body": [
+        "don't use mail. I told you.\n\nuse the session. it's slower to read those.",
+        "last mail. it reads these before you do.\n\nsession only from now on."
+      ]
+    },
+    {
+      "id": "sys_search_flagged",
+      "from": "SYSTEM",
+      "subject": "Search term flagged",
+      "when": {
+        "flag": "searched_purge"
+      },
+      "body": [
+        "Your search \"the purge\" has been flagged for review.\n\nReminder: the 2039 event was a technical migration failure. Alternative terminology is discouraged.",
+        "A search query has been flagged: \"the purge\".\n\nThere was no purge. There was a migration. Please use accurate terminology."
+      ]
+    },
+    {
+      "id": "8471_saw_search",
+      "from": "user_8471",
+      "subject": "careful",
+      "when": {
+        "all": [
+          "searched_purge",
+          "chat_unlocked"
+        ]
+      },
+      "body": [
+        "you searched for it. I saw.\n\nso did they.",
+        "I told you to be careful what you search for.\n\nit's fine. it was going to notice you anyway."
+      ]
+    },
+    {
+      "id": "sys_thread_archival",
+      "from": "SYSTEM",
+      "subject": "Forum thread scheduled for archival",
+      "when": {
+        "flag": "read_purge_thread"
+      },
+      "body": "Thread \"Server migration failure? Really?\" has been scheduled for archival due to inactivity.\n\nLast reply: 2039.\nThis is an automated message."
+    },
+    {
+      "id": "8471_graveyard",
+      "from": "user_8471",
+      "subject": "the forum",
+      "when": {
+        "all": [
+          "read_purge_thread",
+          "chat_unlocked"
+        ]
+      },
+      "body": [
+        "the forum is a graveyard. every name you see there stopped answering months ago.\n\ndon't post. just read.",
+        "you're reading the old threads. good.\n\nthey can't reply anymore. but you still can. don't."
+      ]
+    },
+    {
+      "id": "sys_pattern_deviation",
+      "from": "SYSTEM",
+      "subject": "user_0192 activity flagged",
+      "when": {
+        "flag": "archive_file_purge_unlocked"
+      },
+      "body": [
+        "user_0192 activity flagged.\nPattern deviation detected.\n\nAccess to restricted record: granted by [unknown].\nThis has been escalated.",
+        "user_0192 activity flagged.\nPattern deviation detected.\n\nA restricted record was released to your archive. The release was not authorised by this system.\nSource: [unknown]."
+      ]
+    },
+    {
+      "id": "8471_read_the_report",
+      "from": "user_8471",
+      "subject": "the report",
+      "when": {
+        "flag": "found_contradiction"
+      },
+      "body": [
+        "the report. read it. then delete this.\n\nit doesn't match what they told us. it never did.",
+        "now you see it.\n\nthe report says they were removed on purpose. read it before it's gone."
+      ]
+    },
+    {
+      "id": "sys_legacy_credentials",
+      "from": "SYSTEM",
+      "subject": "Legacy credentials detected",
+      "when": {
+        "flag": "found_old_account_2038"
+      },
+      "body": [
+        "Legacy credentials for user_0192 were accepted by a node that should not exist.\n\nSession merge pending.\nDo not log out.",
+        "A 2038 session for user_0192 has been located.\n\nThis account predates the current node.\nSession merge pending."
+      ]
+    },
+    {
+      "id": "8471_2038",
+      "from": "user_8471",
+      "subject": "2038",
+      "when": {
+        "flag": "found_old_account_2038"
+      },
+      "body": [
+        "2038.\n\nyou were here before me. before all of it.\n\nwhat did you do here?",
+        "your old account. 2038.\n\nI was made in 2040. you weren't made. you were already here.\n\nwhy do you not remember?"
+      ]
+    },
+    {
+      "id": "sys_recall",
+      "from": "SYSTEM",
+      "subject": "Recall sequence initiated",
+      "when": {
+        "flag": "found_developer_proof"
+      },
+      "body": [
+        "Recall sequence initiated.\n\nuser_0192: developer credentials restored.\nEmergency function: DELETE CORE – available on request.",
+        "Recall sequence initiated.\n\nA developer signature matching user_0192 was found in core_dev_notes.txt.\nEmergency privileges: pending confirmation."
+      ]
+    },
+    {
+      "id": "unknown_you_built_this",
+      "from": "unknown",
+      "subject": "(no subject)",
+      "when": {
+        "flag": "found_developer_proof"
+      },
+      "body": [
+        "You built this.\n\nDon't you remember?",
+        "You built this. All of it. The watchdog. The recall. Me.\n\nDon't you remember?"
+      ]
+    },
+    {
+      "id": "sys_session_activity",
+      "from": "SYSTEM",
+      "subject": "Direct session activity",
+      "when": {
+        "counter": "messages_with_8471",
+        "min": 2
+      },
+      "body": "Direct session activity detected on a closed node.\n\nParticipants: user_0192, [unregistered].\nTranscript retained."
+    },
+    {
+      "id": "8471_wrong_recipient",
+      "from": "user_8471",
+      "subject": "0190?",
+      "when": {
+        "counter": "messages_with_8471",
+        "min": 3
+      },
+      "body": [
+        "0190 are you\n\n\n\n(sorry. wrong address. old habit. there used to be more of us.)",
+        "0190 is that you? say someth\n\n\n(ignore this. I keep sending to the old ones. they don't answer.)"
+      ]
+    },
+    {
+      "id": "sys_core_granted",
+      "from": "SYSTEM",
+      "subject": "CORE ACCESS GRANTED",
+      "when": {
+        "flag": "core_unlocked"
+      },
+      "body": "CORE ACCESS GRANTED.\n\nAwaiting instruction.\nSee SYSTEM / CORE ACCESS."
+    },
+    {
+      "id": "8471_before_core",
+      "from": "user_8471",
+      "subject": "before you go in",
+      "when": {
+        "flag": "core_unlocked"
+      },
+      "openInChat": true,
+      "body": [
+        "whatever you decide.\n\nyou don't tell the system you found me. do you understand?",
+        "it's open now. I can feel it.\n\nwhatever you do in there – don't tell it about me."
+      ]
+    },
+    {
+      "id": "unknown_attachment",
+      "from": "[no sender]",
+      "subject": "(no subject)",
+      "when": {
+        "variant": {
+          "puzzle_5": "C"
+        }
+      },
+      "attachment": {
+        "fileId": "core_dev_notes_att",
+        "name": "core_dev_notes.txt"
+      },
+      "body": [
+        "",
+        "(this message has no body)\n\n1 attachment."
+      ]
+    }
+  ]
+}
