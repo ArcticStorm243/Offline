@@ -8,6 +8,7 @@ Vollständiges Game Design: [`OFFLINE_Claude_Code_Prompt.md`](OFFLINE_Claude_Cod
 - **Tech:** reines HTML/CSS/JS (Vanilla, keine Frameworks, kein Build-Schritt), Speicherstand in LocalStorage
 - **Kernprinzip:** nicht linear gescriptet – jeder Durchlauf hat einen Seed, der deterministisch Rätsel-Varianten und Textvarianten auswählt
 - **Sprache im Spiel:** Englisch
+- **Repository:** [github.com/ArcticStorm243/Offline](https://github.com/ArcticStorm243/Offline)
 
 ---
 
